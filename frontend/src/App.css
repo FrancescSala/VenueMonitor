@@ -1,0 +1,60 @@
+.active {
+  color: lightgrey;
+  text-decoration: none;
+}
+
+.NavigationBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-content: center;
+}
+
+.NavigationBar--Link {
+  margin: 5px;
+}
+
+.VenueList {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+.Venue {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  max-width:150px;
+}
+
+.Venue--Picture {
+ /*  width: 150px; */ /* not neede because same max-width indicated in .Venue */
+  height: 185px;
+  border-radius: 10px;
+}
+
+.Venue--Code {
+  font-weight: bold;
+}
+
+.Venue--Name {
+  text-align: center;
+}
+
+.Venue--Disciplines {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center; /* makes effect when more than one row of disciplines in a venue */
+}
+.Venue--DisIcon {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #297DBB;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
