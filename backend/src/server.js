@@ -26,35 +26,9 @@
         this.start();                   //run the express application
      }
  
-
-/*     async connectToDB() {
-         let self = this;
-         // create the connection pool. Pool specific settings are the default
-         try {
-            self.dbConnectionPool = mysql.createPool({
-                host     : 'localhost',
-                database : 'venue_implementation_tracker',
-                user     : 'root',
-                password : 'rootAdmin2022',
-                connectionLimit: 10,
-                waitForConnections: true,
-                queueLimit: 0 
-            });
-            // now that supposedly we are connected, let's test the connection
-            let rows = await self.dbConnectionPool.execute('SELECT 1 FROM DUAL');
-         } catch (err) {
-            console.log(`SEVERE ERROR. Could not connect to database: ${err}`);
-         }
-     };
-*/
     async connectToDB() {
         let self = this;
         // create the connection pool. Pool specific settings are the default
-        console.log(process.env.DB_HOSTNAME);
-        console.log(process.env.DB_INSTANCE);
-        console.log(process.env.DB_USERNAME);
-        console.log(process.env.DB_PASSWORD);
-
         try {
         self.dbConnectionPool = mysql.createPool({
             host     : process.env.DB_HOSTNAME,

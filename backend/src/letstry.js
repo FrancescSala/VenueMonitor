@@ -1,11 +1,13 @@
 const mysql = require('mysql2/promise');
 
+// FILE TO REMOVE
+
 async function main() {
 const connection = await mysql.createConnection({
-        host: 'localhost',
-        database : 'venue_implementation_tracker',
-        user     : 'root',
-        password : 'rootAdmin2022', 
+        host: 'whatever secret from .env file',
+        database : 'whatever secret from .env file',
+        user     : 'whatever secret from .env file',
+        password : 'whatever secret from .env file', 
     });
 const [res1] = await connection.query("SELECT 1 FROM DUAL", []);
 console.log(res1);
