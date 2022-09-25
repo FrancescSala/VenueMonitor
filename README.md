@@ -6,7 +6,8 @@ Venue Monitor is (will be) a web application to run:
  - Venue Operations Monitor
  
  Venue Implementation Monitor: Monitors the implementation of venues (competition and non competition) BEFORE an Olympic Games Event.
- Venue Operations Monitor: Monitord the operation of nenues (competition and non competition) DURING an Olympic Games Event.
+ 
+ Venue Operations Monitor: Monitors the operation of nenues (competition and non competition) DURING an Olympic Games Event.
  
 # Technology Stack
 MySQL and Node JS for the backend
