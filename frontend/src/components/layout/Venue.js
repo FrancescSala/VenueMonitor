@@ -5,7 +5,7 @@ export default function Venue(props) {
     const linkDestination = `/vm/venues/input/${JSON.stringify(props)}`;
     return (
         <div className="Venue">
-          <Link to={linkDestination}>
+          <Link to={linkDestination}> 
             <img className="Venue--Picture" src={`/venues/${props.code}.jpeg`} alt={props.description}></img>
           </Link>
           <Link to={linkDestination}>

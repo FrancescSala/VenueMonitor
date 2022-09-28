@@ -1,20 +1,20 @@
 import React from "react";
 import { useParams } from 'react-router-dom';
-import Venue from '../layout/Venue';
+import VenueHorizontalLayout from '../layout/VenueHorizontalLayout';
+    /* In this page I want the data of the venue ot be rendered different 
+       from how is rendered in page VenueListPage. 
+       I have prefered then to create a new Venue component, to be doing 
+       a lot of conditional rendering and conditional styling
+    */ 
 
 export default function VenueInputPage() {
     const { venueProps } = useParams();
-    const venue = JSON.parse(venueProps)
-    console.log(venue.code);
-    console.log(venue.description);
-    console.log(venue);
-    console.log(venueProps);
+    const venue = JSON.parse(venueProps);
     return(
         <React.Fragment>
             <h2>Venue Input Page</h2>
             <p> page under construction</p>
-            <p>{venueProps}</p>
-            <Venue {...venue} />
+            <VenueHorizontalLayout {...venue} />
         </React.Fragment>
     );
 }

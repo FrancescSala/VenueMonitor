@@ -41,7 +41,7 @@ CREATE TABLE zones (
 CREATE TABLE venues (
   ven_venuecode varchar(3) NOT NULL,
   ven_venuename varchar(35) NOT NULL,
-  ven_description varchar(50),
+  ven_description varchar(500),
   ven_venuetype varchar(20) NOT NULL,
   ven_zonecode varchar(3) NOT NULL,
   PRIMARY KEY (ven_venuecode),
@@ -76,6 +76,7 @@ INSERT INTO topictypes VALUES ('checkbox');
 INSERT INTO topictypes VALUES ('percentage');
 INSERT INTO topictypes VALUES ('unbounded counter');
 INSERT INTO topictypes VALUES ('bounded counter');
+INSERT INTO topictypes VALUES ('list');
 INSERT INTO topictypes VALUES ('date');
 
 

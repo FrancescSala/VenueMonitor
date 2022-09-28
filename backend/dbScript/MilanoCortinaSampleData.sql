@@ -27,14 +27,14 @@ INSERT INTO zones (zon_zonecode, zon_zonename, zon_description) VALUES ('COR', '
 INSERT INTO zones (zon_zonecode, zon_zonename, zon_description) VALUES ('ANT', 'Anterselva', '');
 
 
-INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('MST', 'Meazza Stadium', 'Milano: San Siro. Open Ceremony', 'Non-Competition', 'MIL'); -- Open Ceremony
+INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('MST', 'Meazza Stadium', '', 'Non-Competition', 'MIL'); -- Open Ceremony
 INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('PSG', 'Palaitalia Santa Giulia', '', 'Competition', 'MIL'); -- Ice Hockey
 INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('MHA', 'Milano Hockey Arena', '', 'Competition', 'MIL'); -- IH PIH
 INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('FOA', 'Forum Di Assagio', '', 'Competition', 'MIL'); -- Short Track and Figure Skating
-INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('PDU', 'Piazza Duomo', 'Milano. Closing Ceremony Paralympics', 'Non-Competition', 'MIL'); -- Closing Ceremony PG
+INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('PDU', 'Piazza Duomo', '', 'Non-Competition', 'MIL'); -- Closing Ceremony PG
 INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('LIV', 'Livigno', '', 'Competition', 'VTE'); -- Free Style and  Snowboard
 INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('BOS', 'Bormio Stelvio', '', 'Competition', 'VTE'); -- Alpine Skiing and skiiing mountain
-INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('AVE', 'Arena Of Verona', 'Verona: Closing Ceremony', 'Non-Competition', 'VER'); 
+INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('AVE', 'Arena Of Verona', '', 'Non-Competition', 'VER'); 
 INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('BAP', 'Baselga Di Pinè', '', 'Competition', 'VFI'); -- Speed skating
 INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('TES', 'Tesero Cross-Country Skiing Stadium', '', 'Competition', 'VFI'); -- Cross Country and  Nordic Combined  
 INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('PRE', 'Predazzo Ski Jumping Stadium', '', 'Competition', 'VFI'); -- Ski Jumping and Nordic Combined
@@ -42,6 +42,38 @@ INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype
 INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('CSC', 'Cortina Sliding Centre', '', 'Competition', 'COR'); -- Boblegih Luge and Sekeleton
 INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('COS', 'Cortina Olympic Stadium', '', 'Competition', 'COR'); -- Curling
 INSERT INTO venues (ven_venuecode, ven_venuename, ven_description, ven_venuetype, ven_zonecode) VALUES ('SUA', 'Südtirol Arena', '', 'Competition', 'ANT'); -- Biathlon
+UPDATE venues SET ven_description = 'The Giuseppe Meazza Stadium in Milan, better known as San Siro, is the main sports facility in Milan. It hosts matches of the city\’s two football teams, AC Milan and Inter Milan. With 80,018 seats, it is the ninth stadium in Europe in terms of seating capacity. It will also be the venue for the XXV Olympic Winter Games Milano Cortina 2026 opening ceremony on February 6, 2026.'
+WHERE ven_venuecode = 'MST';
+UPDATE venues SET ven_description = ''
+WHERE ven_venuecode = 'PSG';
+UPDATE venues SET ven_description = ''
+WHERE ven_venuecode = 'MHA';
+UPDATE venues SET ven_description = 'The Forum of Assago, Mediolanum Forum, was constructed in 1990 and has a central arena that can host up to 12,700 spectators over three levels. Mediolanum Forum stands as one of the leading multi-purpose venues in Europe.
+The Mediolanum Forum is served by the Green line of the Milan Metro. It is only seven stops away from the town’s centre, which helps to make it even closer to the hearts of the Milanese people.'
+WHERE ven_venuecode = 'FOA';
+UPDATE venues SET ven_description = ''
+WHERE ven_venuecode = 'PDU';
+UPDATE venues SET ven_description = ''
+WHERE ven_venuecode = 'LIV';
+UPDATE venues SET ven_description = ''
+WHERE ven_venuecode = 'BOS';
+UPDATE venues SET ven_description = ''
+WHERE ven_venuecode = 'AVE';
+UPDATE venues SET ven_description = ''
+WHERE ven_venuecode = 'BAP';
+UPDATE venues SET ven_description = ''
+WHERE ven_venuecode = 'TES';
+UPDATE venues SET ven_description = ''
+WHERE ven_venuecode = 'PRE';
+UPDATE venues SET ven_description = ''
+WHERE ven_venuecode = 'ODT';
+UPDATE venues SET ven_description = ''
+WHERE ven_venuecode = 'CSC';
+UPDATE venues SET ven_description = ''
+WHERE ven_venuecode = 'COS';
+UPDATE venues SET ven_description = ''
+WHERE ven_venuecode = 'SUA';
+
 
 INSERT INTO venuedisciplines (vdi_venuecode, vdi_disciplinecode) VALUES ('PSG', 'IHO');
 INSERT INTO venuedisciplines (vdi_venuecode, vdi_disciplinecode) VALUES ('MHA', 'IHO');
@@ -101,11 +133,20 @@ INSERT INTO categories (cat_categoryname) VALUES ('Services');
 
 INSERT INTO subcategories (sub_subcategoryname, sub_categoryid) VALUES ('Build',1);
 INSERT INTO subcategories (sub_subcategoryname, sub_categoryid) VALUES ('Power',1);
--- INSERT INTO subcategories (sub_subcategoryname, sub_categoryid) VALUES ('Build',1);
  
 
 
--- INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('Results Room Power', 'checkbox',1);
+INSERT INTO topics (top_topicname, top_topictype, top_topicsubcategory) VALUES ('Results Room Power', 'checkbox',2);
+INSERT INTO topics (top_topicname, top_topictype, top_topicsubcategory) VALUES ('Press Tribune Power', 'checkbox',2);
+INSERT INTO topics (top_topicname, top_topictype, top_topicsubcategory) VALUES ('Results Room Furniture', 'percentage',2);
+INSERT INTO topics (top_topicname, top_topictype, top_topicsubcategory) VALUES ('Results Room Furniture', 'percentage',2);
+
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value) VALUES('CSC', 1, TRUE, '', '', 'TRUE');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value) VALUES('CSC', 2, TRUE, '', '', 'FALSE');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value) VALUES('CSC', 3, TRUE, '', '', '50');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value) VALUES('CSC', 4, TRUE, '', '', '80');
+
+
 
 
 
