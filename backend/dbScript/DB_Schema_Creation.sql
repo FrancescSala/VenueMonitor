@@ -58,14 +58,16 @@ CREATE TABLE categories (
   PRIMARY KEY (cat_categoryid)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE subcategories (
-  sub_categoryid tinyint NOT NULL,
-  sub_subcategoryid tinyint NOT NULL AUTO_INCREMENT,
-  sub_subcategoryname varchar(30) NOT NULL,
-  PRIMARY KEY (sub_subcategoryid),
-  KEY FK_sub_categoryid_idx (sub_categoryid),
-  CONSTRAINT FK_sub_cat FOREIGN KEY (sub_categoryid) REFERENCES categories (cat_categoryid) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- we are not going to use this table
+-- CREATE TABLE subcategories (
+--   sub_categoryid tinyint NOT NULL,
+--   sub_subcategoryid tinyint NOT NULL AUTO_INCREMENT,
+--   sub_subcategoryname varchar(30) NOT NULL,
+--  PRIMARY KEY (sub_subcategoryid),
+--  KEY FK_sub_categoryid_idx (sub_categoryid),
+--  CONSTRAINT FK_sub_cat FOREIGN KEY (sub_categoryid) REFERENCES categories (cat_categoryid) ON DELETE RESTRICT ON UPDATE CASCADE
+-- ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 CREATE TABLE topictypes (
@@ -78,20 +80,36 @@ INSERT INTO topictypes VALUES ('unbounded counter');
 INSERT INTO topictypes VALUES ('bounded counter');
 INSERT INTO topictypes VALUES ('list');
 INSERT INTO topictypes VALUES ('date');
+INSERT INTO topictypes VALUES ('state-status');
+INSERT INTO topictypes VALUES ('percentage-status');
 
 
+
+
+-- CREATE TABLE topics (
+--  top_topicid tinyint NOT NULL AUTO_INCREMENT,
+--  top_topicname varchar(30) NOT NULL,
+--  top_topictype varchar(30) NOT NULL,
+--  top_topicsubcategory tinyint NOT NULL,
+--  PRIMARY KEY (top_topicid),
+--  KEY FK_top_topictype_idx (top_topictype),
+--  KEY FK_top_topiccategory_idx (top_topicsubcategory),
+--  CONSTRAINT FK_top_tty FOREIGN KEY (top_topictype) REFERENCES topictypes (tty_topictypename) ON DELETE RESTRICT ON UPDATE CASCADE,
+--  CONSTRAINT FK_top_sub FOREIGN KEY (top_topicsubcategory) REFERENCES subcategories (sub_subcategoryid) ON DELETE RESTRICT ON UPDATE CASCADE
+-- ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- topics will be linked directly to categories
 CREATE TABLE topics (
   top_topicid tinyint NOT NULL AUTO_INCREMENT,
   top_topicname varchar(30) NOT NULL,
   top_topictype varchar(30) NOT NULL,
-  top_topicsubcategory tinyint NOT NULL,
+  top_topiccategory tinyint NOT NULL,
   PRIMARY KEY (top_topicid),
   KEY FK_top_topictype_idx (top_topictype),
-  KEY FK_top_topiccategory_idx (top_topicsubcategory),
+  KEY FK_top_topiccategory_idx (top_topiccategory),
   CONSTRAINT FK_top_tty FOREIGN KEY (top_topictype) REFERENCES topictypes (tty_topictypename) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT FK_top_sub FOREIGN KEY (top_topicsubcategory) REFERENCES subcategories (sub_subcategoryid) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT FK_top_cat FOREIGN KEY (top_topiccategory) REFERENCES categories (cat_categoryid) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 
 CREATE TABLE disciplines (
   dis_disciplinecode varchar(3) NOT NULL,
@@ -139,6 +157,7 @@ CREATE TABLE venuetopics (
   vto_lowerbound varchar(30),
   vto_upperbound varchar(30),
   vto_value varchar(30),
+  vto_status varchar(30),
   PRIMARY KEY (vto_venuecode,vto_topicid),
   KEY FK_vto_venuecode_idx (vto_venuecode), 
   KEY FK_vto_topicid_idx (vto_topicid),

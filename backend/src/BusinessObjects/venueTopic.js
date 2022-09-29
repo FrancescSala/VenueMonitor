@@ -23,9 +23,10 @@ class VenueTopic {
     getTrack() { return this.track; }
     setLowerBound(bound) { this.lowerBound = bound; }
     getLowerBound() { return this.lowerBound; }
-    setUpperBound(bound) { this.lowerBound = bound; }
-    getUpperBound() { return this.bound; }
-
+    setUpperBound(bound) { this.upperBound = bound; }
+    getUpperBound() { return this.upperBound; }
+    setValue(value) { this.value = value; }
+    getUpperBound() { return this.value; }
 }
 
 module.exports = () => { return new VenueTopic(); }

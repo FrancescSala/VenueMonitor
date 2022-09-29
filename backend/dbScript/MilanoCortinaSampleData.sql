@@ -126,33 +126,77 @@ INSERT INTO venueuserprofiles (vup_username, vup_rolename, vup_venuecode)  VALUE
 INSERT INTO venueuserprofiles (vup_username, vup_rolename, vup_venuecode)  VALUES ('gavin@deloitte.com', 'Viewer', 'BAP');
 INSERT INTO venueuserprofiles (vup_username, vup_rolename, vup_venuecode)  VALUES ('gavin@deloitte.com', 'Viewer', 'SUA');
 
+INSERT INTO categories (cat_categoryname) VALUES ('Spaces Readiness');      -- 1
+INSERT INTO categories (cat_categoryname) VALUES ('Equipment Deliveries');  -- 2
+INSERT INTO categories (cat_categoryname) VALUES ('Services Handover');     -- 3
+INSERT INTO categories (cat_categoryname) VALUES ('Progress Status');       -- 4
+INSERT INTO categories (cat_categoryname) VALUES ('Issues');                -- 5
+INSERT INTO categories (cat_categoryname) VALUES ('Venue Info');            -- 6
 
-INSERT INTO categories (cat_categoryname) VALUES ('Spaces');
-INSERT INTO categories (cat_categoryname) VALUES ('Services');
+-- spaces --
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('CER', 'state-status',1);          -- 1
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('Games CCFs', 'state-status',1);   -- 2
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('OVR', 'state-status',1);          -- 3
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('Tech. Tables', 'state-status',1); -- 4
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('PRD (all)', 'state-status',1);    -- 5
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('VTO', 'state-status',1);          -- 6
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('Broadcast', 'state-status',1);    -- 7
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('All Other FA Spaces', 'state-status',1);  -- 8
+-- equipment --
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('EMR (ITL CER/Cell)', 'percentage-status',2);  -- 9
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('EDR (Computers)', 'percentage-status',2);     -- 10
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('EDR (Printers)', 'percentage-status',2);      -- 11
+-- services --
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('Power (IT spaces)', 'state-status',3);        -- 12
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('TER Operational', 'state-status',3);          -- 13
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('CER Operational', 'state-status',3);          -- 14
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('Games Services', 'state-status',3);           -- 15
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('Internet Network', 'state-status',3);         -- 16
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('OVR / Tech. Tables', 'state-status',3);       -- 17
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('PRD', 'state-status',3);                      -- 18
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('Broadcast', 'state-status',3);                -- 19
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('MyPrint', 'state-status',3);                  -- 20
+-- progress status --
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('Games Network Devices', 'percentage-status',4);   -- 21
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('Computers', 'percentage-status',4);               -- 22
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('Printers', 'percentage-status',4);                -- 23
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('IT Spaces Ready', 'percentage-status',4);         -- 24
+-- issues -- 
+
+-- venue info --
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('Operations Start Date', 'date',6);            -- 25
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('Operations End Date', 'date',6);              -- 26
+INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('Status Overall', 'state-status',6);           -- 27
 
 
-INSERT INTO subcategories (sub_subcategoryname, sub_categoryid) VALUES ('Build',1);
-INSERT INTO subcategories (sub_subcategoryname, sub_categoryid) VALUES ('Power',1);
- 
 
 
-INSERT INTO topics (top_topicname, top_topictype, top_topicsubcategory) VALUES ('Results Room Power', 'checkbox',2);
-INSERT INTO topics (top_topicname, top_topictype, top_topicsubcategory) VALUES ('Press Tribune Power', 'checkbox',2);
-INSERT INTO topics (top_topicname, top_topictype, top_topicsubcategory) VALUES ('Results Room Furniture', 'percentage',2);
-INSERT INTO topics (top_topicname, top_topictype, top_topicsubcategory) VALUES ('Results Room Furniture', 'percentage',2);
-
-INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value) VALUES('CSC', 1, TRUE, '', '', 'TRUE');
-INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value) VALUES('CSC', 2, TRUE, '', '', 'FALSE');
-INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value) VALUES('CSC', 3, TRUE, '', '', '50');
-INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value) VALUES('CSC', 4, TRUE, '', '', '80');
-
-
-
-
-
--- CREATE TABLE topics (
--- CREATE TABLE userprofiles (
--- CREATE TABLE venueuserprofiles (
--- CREATE TABLE venuetopics (
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  1, TRUE, '', '', 'Completed', 'On Time');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  2, TRUE, '', '', 'Completed', 'On Time');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  3, TRUE, '', '', 'Not Started', 'Late Critical');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  4, TRUE, '', '', 'Completed On Time', '');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  5, TRUE, '', '', 'In Progress', 'Late');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  6, TRUE, '', '', 'Completed', 'On Time');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  7, TRUE, '', '', 'Completed', 'On Time');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  8, TRUE, '', '', 'Completed', 'On Time');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  9, TRUE, '', '', '70', 'Late Critical');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 10, TRUE, '', '', '80', 'Late Critical');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 11, TRUE, '', '', '20', 'Late Critical');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 12, TRUE, '', '', 'Completed', 'On Time');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 13, TRUE, '', '', 'In Progress', 'Late Critical');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 14, TRUE, '', '', 'In Progress', 'Late Critical');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 15, TRUE, '', '', 'Completed', 'Late');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 16, TRUE, '', '', 'In Progress', 'Late');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 17, TRUE, '', '', 'Not Started', 'Late Critical');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 18, TRUE, '', '', 'In Progress', 'On Time');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 19, TRUE, '', '', 'Not Started', 'Late Critical');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 20, TRUE, '', '', 'Not Started', 'Late Critical');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 21, TRUE, '', '', '50', 'Late');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 22, TRUE, '', '', '60', 'Late');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 23, TRUE, '', '', '20', 'Late Critical');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 24, TRUE, '', '', '80', 'Late Critical');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 25, TRUE, '', '', '9 Feb 2026', '');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 26, TRUE, '', '', '21 Feb 2026', '');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC', 27, TRUE, '', '', 'In Progress', 'On Time');
 
 

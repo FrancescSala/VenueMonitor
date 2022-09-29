@@ -1,4 +1,4 @@
-const venue = require('../BusinessObjects/venueTopic.js');
+const venueTopic = require('../BusinessObjects/venueTopic.js');
 
 class venueTopicDBBroker {
     
@@ -39,23 +39,26 @@ class venueTopicDBBroker {
         return vt;
     };
 
-    async getList() {
-        let sql = "SELECT * FROM venues ORDER BY ven_venuecode";
-        let [rows] = await this.dbConnPool.execute(sql);
+    async getList(venueCode) {
+        const sql = "SELECT * FROM venuetopics, topics WHERE vto_venuecode = ? \
+        AND vto_topicid = top_topicid";
+        let [rows] = await this.dbConnPool.execute(sql, [venueCode]);
         if (rows.length === 0)  return null;
-        let vlist = [];
+        let vtList = [];
         rows.forEach(row => {
-            let v = venue();
-            v.setCode(row.ven_venuecode);
-            v.setName(row.ven_venuename);
-            v.setDescription(row.ven_description);
-            v.setType(row.ven_venuetype);
-            v.setZone(row.ven_zonecode);
-            vlist.push(v);    
+            let vt = venueTopic();
+            vt.setVenueCode(row.vto_venuecode);
+            vt.setTopicId(row.vto_topicid);
+            vt.setName(row.top_topicname);
+            vt.setType(row.top_topictype);
+            vt.setTrack(row.vto_track);
+            vt.setLowerBound(row.vto_lowerbound);
+            vt.setUpperBound(row.vto_upperbound);
+            vt.setValue(row.vto_value);
+            vtList.push(vt);    
         });
-        return vlist;
+        return vtList;
     };
-
 }
 
 module.exports = (dbConnectionPool) => { return new venueTopicDBBroker(dbConnectionPool);}

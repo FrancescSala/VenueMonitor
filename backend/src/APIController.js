@@ -16,8 +16,9 @@ class APIController {
         this.hello();
         this.getDisciplineById();
         this.getDisciplinesByVenue();
-        this.getVenueById();
         this.getVenues();
+        this.getVenueById();
+        this.getVenueTopics();
         this.getZoneById();
     }
 
@@ -75,6 +76,18 @@ class APIController {
         });
     }
     
+    // Enpoint to get the list of topics of a venues (GET Endpoint)
+    async getVenueTopics() {
+        let self = this;
+        this.app.get('/topics/:venueid', async (req, res) => {
+            let venueTopicsBrk = require('./DBBrokers/venueTopicsDBBroker.js')(this.dbConnectionPool);
+            let venueTopicsList = await venueTopicsBrk.getList(req.params.venueid);
+            return (venueTopicsList) ? res.status(200).json(venueTopicsList) : res.status(404).send(`No topics could be found for the given venue.`);
+        });
+        this.app.get('/topics/*', async (req, res) => {
+            return res.status(404).send('Topics could not be found. Please review the parameters.'); 
+        });
+    }
 
     // Enpoint to get a venue zone by id (GET Endpoint)
     async getZoneById() {
