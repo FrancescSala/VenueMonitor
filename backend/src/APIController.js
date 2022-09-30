@@ -80,7 +80,7 @@ class APIController {
     async getVenueTopics() {
         let self = this;
         this.app.get('/topics/:venueid', async (req, res) => {
-            let venueTopicsBrk = require('./DBBrokers/venueTopicsDBBroker.js')(this.dbConnectionPool);
+            let venueTopicsBrk = require('./DBBrokers/venueTopicDBBroker.js')(this.dbConnectionPool);
             let venueTopicsList = await venueTopicsBrk.getList(req.params.venueid);
             return (venueTopicsList) ? res.status(200).json(venueTopicsList) : res.status(404).send(`No topics could be found for the given venue.`);
         });

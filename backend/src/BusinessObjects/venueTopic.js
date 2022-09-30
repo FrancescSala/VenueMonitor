@@ -2,6 +2,7 @@ class VenueTopic {
     constructor() {
         this.venueCode = '';
         this.topicId = 0;
+        this.category = '';
         this.name = '';
         this.type = '';
         this.track = true;
@@ -15,6 +16,8 @@ class VenueTopic {
     getVenueCode() { return this.venuCode; }
     setTopicId(id) { this.topicId = id; }
     getTopicId() { return this.topicId; }
+    getCategory() { return this.category; }
+    setCategory(name) { this.category = name; }
     setName(name) { this.name = name; }
     getName() { return this.name; }
     setType(type) { this.type = type; }

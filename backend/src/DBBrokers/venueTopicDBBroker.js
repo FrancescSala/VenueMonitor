@@ -40,8 +40,9 @@ class venueTopicDBBroker {
     };
 
     async getList(venueCode) {
-        const sql = "SELECT * FROM venuetopics, topics WHERE vto_venuecode = ? \
-        AND vto_topicid = top_topicid";
+        const sql = "SELECT * FROM venuetopics, topics, categories  WHERE vto_venuecode = ? \
+        AND vto_topicid = top_topicid AND top_topiccategory = cat_categoryid \
+        ORDER BY cat_categoryname, top_topictype, top_topicname";
         let [rows] = await this.dbConnPool.execute(sql, [venueCode]);
         if (rows.length === 0)  return null;
         let vtList = [];
@@ -49,6 +50,7 @@ class venueTopicDBBroker {
             let vt = venueTopic();
             vt.setVenueCode(row.vto_venuecode);
             vt.setTopicId(row.vto_topicid);
+            vt.setCategory(row.cat_categoryname)
             vt.setName(row.top_topicname);
             vt.setType(row.top_topictype);
             vt.setTrack(row.vto_track);
