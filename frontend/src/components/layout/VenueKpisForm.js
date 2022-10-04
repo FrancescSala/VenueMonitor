@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 
 export default function VenueKpisForm (props) {
     let [formData, setFormData] = useState([]);
+    console.log('in Render');
     
     useEffect(() => {
+        console.log('in useEffect');
             const url = 'http://localhost:4000/topics/' + props.venue;
             fetch(url)
                 .then((res) => { 
@@ -29,48 +31,53 @@ export default function VenueKpisForm (props) {
         setFormData(prevState => ( {...prevState, [name]: type === 'checkbox' ? checked : value, feedback: ''}));
     }
 
-    const categories = [];
-    formData.forEach((kpi, index) => {if (index === 0 || kpi.category !== formData[index-1].category) categories.push(kpi.category)});
-    console.log(categories);
+    // const categories = [];
+    // formData.forEach((kpi, index) => {if (index === 0 || kpi.category !== formData[index-1].category) categories.push(kpi.category)});
+    // console.log(categories);
+    const categories = ['Equipment Deliveries'];
 
     
     return (
-            <form className="VenueInputForm" onSubmit={handleSubmit} >
-                {
-                categories.map((cat, index) => {
+            <form key ={`${Math.random()}`}className="VenueInputForm" onSubmit={handleSubmit} >
+                { categories.map((cat, index) => {
                     return (
-                        <div key={`div_0_${index}`}>
-                            <h3 key={`cat${index}`}>{cat}</h3>
-                            {formData.filter(kpi => kpi.category === cat).map(kpi => {
-                                let x = 1
+                        <div key={`div_0_${index}_${Math.random()}`}>
+                            <h3 key={`cat${index}_${Math.random()}`} className="VIF--Category">{cat}</h3>
+                            <table key={`tab_${cat}_${Math.random()}`}>
+                            {console.log(`category is ${cat}`)}
+                            {console.log(Math.random())}
+                            {console.log(Math.random())}
+                            {formData.filter(kpi => kpi.category === cat).map((kpi,index2) => {
+                                console.log(kpi.topicId);
                                 return (
-                                    <div key={`div${kpi.topicId}`}>
-                                    <label key={`lab${kpi.topicId}`} htmlFor={kpi.topicId}>{kpi.name}</label>
-                                    <input key={`trk${kpi.topicId}`} id={`trk${kpi.topicId}`} type="checkbox" name={`track${kpi.name}`} checked={kpi.track} onChange={handleChange} />
-                                    <input key={`inp${kpi.topicId}`} id={kpi.topicId} name={kpi.name} value={kpi.value} onChange={handleChange} />
-                                    {kpi.type.endsWith('-status') && <input key={`stu${kpi.topicId}`} id={kpi.topicId} name={`stu${kpi.name}`} value={kpi.value} onChange={handleChange} />}
-                                    </div>
+                                    <React.Fragment key={`frg${kpi.topicId}_${Math.random()}`}>
+                                    {index2 === 0 && 
+                                        <thead key={`hed_hed${kpi.topicId}_${Math.random()}`}>
+                                        <tr key={`hed${kpi.topicId}_${Math.random()}`} className="VIF--TableHeader">
+                                            <th key={`hed_name${kpi.topicId}_${Math.random()}`}></th>
+                                            <th key={`hed_trck${kpi.topicId}_${Math.random()}`}>Track</th>
+                                            <th key={`hed_valu${kpi.topicId}_${Math.random()}`}>Kpi</th>
+                                            {kpi.type.endsWith('-status') && <th key={`hed_stat${kpi.topicId}_${Math.random()}`}>Status</th>}
+                                        </tr>
+                                        </thead>
+                                    }
+                                    <tbody key={`bod${kpi.topicId}_${Math.random()}`}>
+                                    <tr key={`row${kpi.topicId}_${Math.random()}`}>
+                                        <td key={`name${kpi.topicId}_${Math.random()}`}>{kpi.name}</td>
+                                        <td key={`trck${kpi.topicId}_${Math.random()}`}>{kpi.track}</td>
+                                        <td key={`valu${kpi.topicId}_${Math.random()}`}>{kpi.value}</td>
+                                        <td key={`stat${kpi.topicId}_${Math.random()}`}>status for {kpi.value}</td>
+                                    </tr>
+                                    </tbody>
+                                    </React.Fragment>
+
                                 )
                             })
                             }
+                            </table>
                         </div>
-                    )
-                })}
+                    )})
+                }
             </form>
     );
 }
-
-/*
-                {formData.map((kpi, index) => {
-                    return (
-                        <div key={`div_0_${index}`}>
-                        {(index === 0 || kpi.category !== formData[index-1].category) && <h3 key={`cat${index}`}>{kpi.category}</h3>}
-                        <div key ={`div${index}`}>
-                        <label key={`lab${index}`} htmlFor={kpi.topicId}>{kpi.name}</label>
-                        <input key={`inp${index}`} id={kpi.topicId} name={kpi.name} value={kpi.value} onChange={handleChange} />
-                        </div>
-                        </div>
-                    )
-                })}
-
-*/
