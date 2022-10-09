@@ -174,7 +174,7 @@ INSERT INTO topics (top_topicname, top_topictype, top_topiccategory) VALUES ('St
 INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  1, TRUE, '', '', 'Completed', 'On Time');
 INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  2, TRUE, '', '', 'Completed', 'On Time');
 INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  3, TRUE, '', '', 'Not Started', 'Late Critical');
-INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  4, TRUE, '', '', 'Completed On Time', '');
+INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  4, TRUE, '', '', 'Completed', 'On Time');
 INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  5, TRUE, '', '', 'In Progress', 'Late');
 INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  6, TRUE, '', '', 'Completed', 'On Time');
 INSERT INTO venuetopics (vto_venuecode, vto_topicid, vto_track, vto_lowerbound, vto_upperbound, vto_value, vto_status) VALUES('CSC',  7, TRUE, '', '', 'Completed', 'On Time');

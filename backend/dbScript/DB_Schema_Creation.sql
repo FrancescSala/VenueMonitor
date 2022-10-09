@@ -165,4 +165,30 @@ CREATE TABLE venuetopics (
   CONSTRAINT FK_vto_top FOREIGN KEY (vto_topicid) REFERENCES topics (top_topicid) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE topictypeslists (
+  ttl_valueid tinyint NOT NULL AUTO_INCREMENT,
+  ttl_value varchar(30) NOT NULL,
+  ttl_topictypename varchar(30) NOT NULL,
+  PRIMARY KEY (ttl_valueid)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+INSERT INTO topictypeslists(ttl_value, ttl_topictypename) VALUES ('Not Started', 'state');
+INSERT INTO topictypeslists(ttl_value, ttl_topictypename) VALUES ('In Progress', 'state');
+INSERT INTO topictypeslists(ttl_value, ttl_topictypename) VALUES ('Paused', 'state'); -- or On Hold
+INSERT INTO topictypeslists(ttl_value, ttl_topictypename) VALUES ('Completed', 'state');
+INSERT INTO topictypeslists(ttl_value, ttl_topictypename) VALUES ('Ahead', 'status');
+INSERT INTO topictypeslists(ttl_value, ttl_topictypename) VALUES ('On Time', 'status'); -- or As Planned
+INSERT INTO topictypeslists(ttl_value, ttl_topictypename) VALUES ('Late', 'status');
+INSERT INTO topictypeslists(ttl_value, ttl_topictypename) VALUES ('Late Critical', 'status');
+
+
+
+
+CREATE TABLE topiclists (
+  tol_valueid tinyint NOT NULL AUTO_INCREMENT,
+  tol_value varchar(30) NOT NULL,
+  tol_topicid tinyint NOT NULL,
+  PRIMARY KEY (tol_valueid),
+  KEY FK_tol_top (tol_topicid),
+  CONSTRAINT FK_tol_top FOREIGN KEY (tol_topicid) REFERENCES topics (top_topicid) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
