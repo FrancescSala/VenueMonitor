@@ -9,13 +9,15 @@
 class APIController {
 
     //The constructor receives the instance of the express.js app  and the database connection pool
-    constructor(app,dbConnectionPool) {
+    constructor(app, dbConnectionPool) {
         this.app = app;
         this.dbConnectionPool = dbConnectionPool;
         // All the endpoints methods need to be called in the constructor to initialize the route.
         this.hello();
         this.getDisciplineById();
         this.getDisciplinesByVenue();
+        this.getStates();
+        this.getStatuses();
         this.getVenues();
         this.getVenueById();
         this.getVenueTopics();
@@ -35,7 +37,7 @@ class APIController {
             return (discipline) ? res.status(200).json(discipline) : res.status(404).send(`Discipline with code ${req.params.disciplineid} could not be found.`);
         });
         this.app.get('/discipline/', async (req, res) => {
-            return res.status(404).send('Discipline could not be found. Please review the parameters.'); 
+            return res.status(404).send('Discipline could not be found. Please review the parameters.');
         });
     }
 
@@ -46,7 +48,25 @@ class APIController {
             return (disciplineList.length !== 0) ? res.status(200).json(disciplineList) : res.status(404).send(`Disciplines not found for venue with code ${req.params.venueid}. Either the venue does not exist or it is a non competition venue.`);
         });
         this.app.get('/discipline/venue/', async (req, res) => {
-            return res.status(404).send('Disciplines could not be found. Please review the parameters.'); 
+            return res.status(404).send('Disciplines could not be found. Please review the parameters.');
+        });
+    }
+
+    // Enpoint to get list of states (GET Endpoint)
+    async getStates() {
+        this.app.get('/states/', async (req, res) => {
+            let stateBrk = require('./DBBrokers/stateDBBroker.js')(this.dbConnectionPool);
+            let states = await stateBrk.getList();
+            return (states) ? res.status(200).json(states) : res.status(404).send('No states could not be found.');
+        });
+    }
+
+    // Enpoint to get list of statuses (GET Endpoint)
+    async getStatuses() {
+        this.app.get('/statuses/', async (req, res) => {
+            let statusBrk = require('./DBBrokers/statusDBBroker.js')(this.dbConnectionPool);
+            let statuses = await statusBrk.getList();
+            return (statuses) ? res.status(200).json(statuses) : res.status(404).send('No statuses could not be found.');
         });
     }
 
@@ -59,7 +79,7 @@ class APIController {
             return (venue) ? res.status(200).json(venue) : res.status(404).send(`Venue with code ${req.params.venueid} could not be found.`);
         });
         this.app.get('/venue/', async (req, res) => {
-            return res.status(404).send('Venue could not be found. Please review the parameters.'); 
+            return res.status(404).send('Venue could not be found. Please review the parameters.');
         });
     }
 
@@ -72,10 +92,10 @@ class APIController {
             return (venueList) ? res.status(200).json(venueList) : res.status(404).send(`No venues could be found.`);
         });
         this.app.get('/venues/*', async (req, res) => {
-            return res.status(404).send('Venues could not be found. Please review the parameters.'); 
+            return res.status(404).send('Venues could not be found. Please review the parameters.');
         });
     }
-    
+
     // Enpoint to get the list of topics of a venues (GET Endpoint)
     async getVenueTopics() {
         let self = this;
@@ -85,7 +105,7 @@ class APIController {
             return (venueTopicsList) ? res.status(200).json(venueTopicsList) : res.status(404).send(`No topics could be found for the given venue.`);
         });
         this.app.get('/topics/*', async (req, res) => {
-            return res.status(404).send('Topics could not be found. Please review the parameters.'); 
+            return res.status(404).send('Topics could not be found. Please review the parameters.');
         });
     }
 
@@ -97,9 +117,9 @@ class APIController {
             return (zone) ? res.status(200).json(zone) : res.status(404).send(`Zone with code ${req.params.zoneid} could not be found.`);
         });
         this.app.get('/zone/', async (req, res) => {
-            return res.status(404).send('Zone could not be found. Please review the parameters.'); 
+            return res.status(404).send('Zone could not be found. Please review the parameters.');
         });
     }
 }
 
-module.exports = (app,dbConnPool) => { return new APIController(app, dbConnPool);}
+module.exports = (app, dbConnPool) => { return new APIController(app, dbConnPool); }
