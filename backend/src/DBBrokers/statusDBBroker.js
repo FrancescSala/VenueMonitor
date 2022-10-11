@@ -21,7 +21,7 @@ class statusDBBroker {
         let statuses = [];
         for (let row of rows) {
             let s = status();
-            s.setId(row['ttl_valueif']);
+            s.setId(row['ttl_valueid']);
             s.setName(row['ttl_value']);
             statuses.push(s);
         };

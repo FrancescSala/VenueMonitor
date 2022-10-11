@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export default function VenueKpisForm(props) {
     let [formData, setFormData] = useState([]);
+    let [statuses, setStatuses] = useState([]);
+    let refList = useRef(null); // to refrence the topic chosen by user. No need to make it as a controled input
+
 
     useEffect(() => {
         const url = 'http://localhost:4000/topics/' + props.venue;
@@ -18,13 +21,29 @@ export default function VenueKpisForm(props) {
                 console.dir(error);
                 console.log(error.response);
             });
-        if (formData.some(kpi => kpi.type.endsWith('-status'))) {
-            // TO DO : consult the list of status
-        }
-        if (formData.some(kpi => kpi.type.starssWith('state-'))) {
-            // TO DO : consult the list of states
-        }
     }, [props.venue]);
+
+
+    useEffect(() => {
+        if (formData.some(kpi => kpi.type.endsWith('status'))) {
+            const url = 'http://localhost:4000/statuses/';
+            fetch(url)
+                .then((res) => {
+                    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+                    else return res.json();
+                })
+                .then(data => {
+                    setStatuses(Array.from(data));
+                })
+                .catch(error => {
+                    console.log(url);
+                    console.dir(error);
+                    console.log(error.response);
+                });
+        }
+    }, [formData]);
+
+    console.log(statuses);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -48,7 +67,12 @@ export default function VenueKpisForm(props) {
     //    formData.forEach((kpi, index) => {if (index === 0 || kpi.category !== formData[index-1].category) categories.push(kpi.category)});
     //    console.log(categories);
     const categories = ['Equipment Deliveries'];
+    let options = statuses.map(status => {
+        return <td><option key={`stat${status.id.toString()}`} value={status.name}></option></td>
+    })
 
+
+    console.log('calen els status? ' + formData.some(kpi => kpi.type.endsWith('status')));
     return (
         <form className="VenueInputForm" onSubmit={handleSubmit} >
             {categories.map((cat, index) => {
@@ -76,11 +100,19 @@ export default function VenueKpisForm(props) {
                                                 <td><input type="text" key={`valu${kpi.topicId}`} id={kpi.topicId} value={kpi.value} onChange={handleChange} required />
                                                     {kpi.type.startsWith('percentage') && "%"}
                                                 </td>
-                                                <td><input type="text" key={`stat${kpi.topicId}`} id={kpi.topicId} value={`status for ${kpi.value}`} onChange={handleChange} /></td>
+                                                {formData.some(kpi => kpi.type.endsWith('status')) &&
+                                                    <td><select className='init--topicselection' id="topic" name="topic" ref={refList}>
+                                                        {statuses.map(status => {
+                                                            console.log(kpi.value, ' ', status.name);  // WRONG: TO DO - in the kpi we need also a field status (from DB: vto_staus in table venuetopics)
+                                                            return <option key={`stat${status.id.toString()}`} value={status.name} selected={(kpi.value === status.name) ? "selected" : ""}>
+                                                                {status.name}
+                                                            </option>
+                                                        })}
+                                                    </select></td>
+                                                }
                                             </tr>
                                         </tbody>
                                     </React.Fragment>
-
                                 )
                             })
                             }
@@ -92,3 +124,14 @@ export default function VenueKpisForm(props) {
         </form>
     );
 }
+
+/*
+                                                        {statuses.map(status => {
+                                                            return <td><option key={`stat${status.id.toString()}`} value={status.name}></option></td>
+                                                        }}
+
+*/
+
+
+//{topics.map(elem => <option value={elem.code.toString()} key={elem.code.toString()}>{elem.name}</option>)}
+// <td><input type="text" key={`stat${kpi.topicId}`} id={kpi.topicId} value={`status for ${kpi.value}`} onChange={handleChange} /></td>
